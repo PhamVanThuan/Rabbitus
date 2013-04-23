@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbitus", "Rabbitus\Rabbitus.csproj", "{4C1654BB-4646-4500-8F77-061D2EF5F548}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbitus.Tests", "Rabbitus.Tests\Rabbitus.Tests.csproj", "{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C1654BB-4646-4500-8F77-061D2EF5F548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1654BB-4646-4500-8F77-061D2EF5F548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1654BB-4646-4500-8F77-061D2EF5F548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1654BB-4646-4500-8F77-061D2EF5F548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
