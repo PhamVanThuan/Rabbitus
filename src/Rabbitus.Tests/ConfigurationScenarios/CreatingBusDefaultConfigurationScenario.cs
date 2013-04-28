@@ -11,7 +11,7 @@ namespace Rabbitus.Tests.ConfigurationScenarios
 
         protected void CreateABusWithDefaultConfiguration()
         {
-            _bus = Bus.Create(c => { });
+            _bus = Rabbitus.Configure(c => { });
         }
 
         protected void TheRabbitHostIsLocalhost()

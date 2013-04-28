@@ -1,22 +1,14 @@
-using System;
+using Rabbitus.Configuration;
 
 namespace Rabbitus
 {
-	public class Bus : IBus
-	{
-        public Configuration.Configuration Configuration { get; private set; }
+    public class Bus : IBus
+    {
+        public BusConfiguration Configuration { get; private set; }
 
-        private Bus()
+        public Bus(BusConfiguration configuration)
         {
-            Configuration = new Configuration.Configuration();
+            Configuration = configuration;
         }
-
-		public static IBus Create(Action<IBus> configure)
-		{
-		    var bus = new Bus();
-		    configure(bus);
-
-		    return bus;
-		}
-	}
+    }
 }

@@ -2,6 +2,6 @@ namespace Rabbitus
 {
 	public interface IBus
 	{
-        Configuration.Configuration Configuration { get; }
+        Configuration.BusConfiguration Configuration { get; }
 	}
 }
