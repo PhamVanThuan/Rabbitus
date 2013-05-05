@@ -1,16 +1,14 @@
-﻿using System;
 using Rabbitus.Configuration;
 
 namespace Rabbitus
 {
-    public static class Rabbitus
+    public class Rabbitus : IRabbitus
     {
-        public static IBus Configure(Action<BusConfiguration> configure)
-        {
-            var config = new BusConfiguration();
-            configure(config);
+        public RabbitusConfiguration Configuration { get; private set; }
 
-            return new Bus(config);
+        public Rabbitus()
+        {
+            Configuration = new RabbitusConfiguration();
         }
     }
 }

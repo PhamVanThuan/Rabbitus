@@ -45,8 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationScenarios\CreatingBusDefaultConfigurationScenario.cs" />
+    <Compile Include="ConfigurationScenarios\CreatingRabbitusDefaultConfigurationScenario.cs" />
     <Compile Include="Givn.cs" />
+    <Compile Include="MessageDispatcherScenarios\DispatchMessageScenario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

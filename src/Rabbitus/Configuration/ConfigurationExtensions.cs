@@ -2,11 +2,11 @@
 {
     public static class ConfigurationExtensions
     {
-         public static IBus WithQueueNamed(this IBus bus, string queue)
+         public static IRabbitus WithQueueNamed(this IRabbitus rabbitus, string queue)
          {
-             bus.Configuration.QueueName = queue;
+             rabbitus.Configuration.QueueName = queue;
 
-             return bus;
+             return rabbitus;
          }
     }
 }

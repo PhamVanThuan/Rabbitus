@@ -39,13 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bus.cs" />
-    <Compile Include="Configuration\BusConfiguration.cs" />
-    <Compile Include="Configuration\ConfigurationExtensions.cs" />
-    <Compile Include="IBus.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Actor.cs" />
+    <Compile Include="ActorConfiguration.cs" />
+    <Compile Include="ActorMessageHandler.cs" />
+    <Compile Include="IActorMessageHandler.cs" />
+    <Compile Include="MessageDispatcher.cs" />
     <Compile Include="Rabbitus.cs" />
+    <Compile Include="Configuration\RabbitusConfiguration.cs" />
+    <Compile Include="Configuration\ConfigurationExtensions.cs" />
+    <Compile Include="IRabbitus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RabbitusFactory.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

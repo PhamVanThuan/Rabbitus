@@ -5,29 +5,29 @@ using Shouldly;
 namespace Rabbitus.Tests.ConfigurationScenarios
 {
     [TestFixture]
-    public class CreatingBusDefaultConfigurationScenario
+    public class CreatingRabbitusDefaultConfigurationScenario
     {
-        private IBus _bus;
+        private IRabbitus _rabbitus;
 
-        protected void CreateABusWithDefaultConfiguration()
+        protected void CreateRabbitusWithDefaultConfiguration()
         {
-            _bus = Rabbitus.Configure(c => { });
+            _rabbitus = RabbitusFactory.Configure(c => { });
         }
 
         protected void TheRabbitHostIsLocalhost()
         {
-            _bus.Configuration.RabbitHost.ShouldBe("localhost");
+            _rabbitus.Configuration.RabbitHost.ShouldBe("localhost");
         }
 
         protected void TheRabbitPortIs1572()
         {
-            _bus.Configuration.RabbitPort.ShouldBe(1572);
+            _rabbitus.Configuration.RabbitPort.ShouldBe(1572);
         }
 
         [Test]
         public void Execute()
         {
-            Wh.n(CreateABusWithDefaultConfiguration);
+            Wh.n(CreateRabbitusWithDefaultConfiguration);
             Th.n(TheRabbitHostIsLocalhost)
                 .And(TheRabbitPortIs1572);
         }
