@@ -1,7 +1,9 @@
+using Rabbitus.Configuration;
+
 namespace Rabbitus
 {
 	public interface IRabbitus
 	{
-        Configuration.RabbitusConfiguration Configuration { get; }
+        RabbitusConfiguration Configuration { get; }
 	}
 }
