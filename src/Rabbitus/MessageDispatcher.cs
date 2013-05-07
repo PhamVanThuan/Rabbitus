@@ -3,9 +3,10 @@ using System.Linq;
 
 namespace Rabbitus
 {
-    public class MessageDispatcher
+    public class MessageDispatcher : IMessageDispatcher
     {
-        private readonly IList<IActorMessageHandler> _handlers = new List<IActorMessageHandler>(); 
+        private readonly IList<IActorMessageHandler<object>> _handlers = new List<IActorMessageHandler<object>>();
+        private readonly IActorFactory _actorFactory = new DefaultActorFactory();
 
         public void RegisterActor<TActor>()
             where TActor : Actor<TActor>
@@ -17,12 +18,13 @@ namespace Rabbitus
             }  
         }
 
-        public void Dispatch(object message)
+        public void Dispatch<TMessage>(IMessageContext<TMessage> context)
+            where TMessage : class
         {
-            var handlers = _handlers.Where(h => h.CanHandle(message));
+            var handlers = _handlers.Where(h => h.CanHandle(context));
             foreach (var handler in handlers)
             {
-                handler.Handle(message); 
+                handler.Handle(_actorFactory, context); 
             }
         }
     }

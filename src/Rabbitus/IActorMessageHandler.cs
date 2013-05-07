@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Rabbitus
+﻿namespace Rabbitus
 {
-    public interface IActorMessageHandler
+    public interface IActorMessageHandler<in TMessage>
+        where TMessage : class
     {
-        Type MessageType { get; }
-        bool CanHandle(object message);
-        void Handle(object message);
+        bool CanHandle(IMessageContext<TMessage> context);
+        void Handle(IActorFactory actorFactory, IMessageContext<TMessage> context);
     }
 }

@@ -26,7 +26,7 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
 
         protected void DispatchingTheMessage()
         {
-            _dispatcher.Dispatch(_message);
+            _dispatcher.Dispatch(new MessageContext<TestMessage>(_message));
         }
 
         protected void TheMessageIsDispatchedToTheActor()
@@ -53,12 +53,12 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
             static TestActor()
             {
                 ForMessage<TestMessage>()
-                    .HandledBy((actor, message) => actor.HandleTestMessage(message));
+                    .HandledBy((actor, context) => actor.HandleTestMessage(context));
             }
 
-            public void HandleTestMessage(TestMessage message)
+            public void HandleTestMessage(IMessageContext<TestMessage> context)
             {
-                message.Received = true;
+                context.Message.Received = true;
             }
         }
     }

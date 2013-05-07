@@ -2,30 +2,25 @@
 
 namespace Rabbitus
 {
-    public class ActorMessageHandler<TActor, TMessage> : IActorMessageHandler
+    public class ActorMessageHandler<TActor, TMessage> : IActorMessageHandler<TMessage>
         where TActor : Actor<TActor>
+        where TMessage : class
     {
-        public Action<TActor, object> Handler { get; private set; }
+        public Action<TActor, IMessageContext<TMessage>> Handler { get; private set; }
 
-        public Type MessageType
+        public bool CanHandle(IMessageContext<TMessage> context)
         {
-            get { return typeof (TMessage); }
+            return true;
         }
 
-        public bool CanHandle(object message)
+        public void Handle(IActorFactory actorFactory, IMessageContext<TMessage> context)
         {
-            return message is TMessage;
+            actorFactory.CreateActor<TActor>(actor => Handler(actor, context));
         }
 
-        public void Handle(object message)
+        public void HandledBy(Action<TActor, IMessageContext<TMessage>> handler)
         {
-            var actor = Activator.CreateInstance<TActor>();
-            Handler(actor, message);
-        }
-
-        public void HandledBy(Action<TActor, TMessage> handler)
-        {
-            Handler = (actor, message) => handler(actor, (TMessage) message);
+            Handler = handler;
         }
     }
 }

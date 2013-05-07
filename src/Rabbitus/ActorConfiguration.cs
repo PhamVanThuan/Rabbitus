@@ -1,4 +1,4 @@
-﻿    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Rabbitus
 {
@@ -6,18 +6,19 @@ namespace Rabbitus
         where TActor : Actor<TActor>
     {
 //// ReSharper disable StaticFieldInGenericType
-        private static readonly IList<IActorMessageHandler> Handlers = new List<IActorMessageHandler>();
+        private static readonly IList<IActorMessageHandler<object>> Handlers = new List<IActorMessageHandler<object>>();
 //// ReSharper restore StaticFieldInGenericType
   
-        public static ActorMessageHandler<TActor, TMessage> ForMessage<TMessage>()
+        public static ActorMessageHandler<TActor, TMessage> ForMessage<TMessage>() 
+            where TMessage : class
         {
-            var config = new ActorMessageHandler<TActor, TMessage>();
-            Handlers.Add(config);
+            var handler = new ActorMessageHandler<TActor, TMessage>();
+            Handlers.Add( new NarrowingActorMessageHandler<TMessage>(handler));
 
-            return config;
+            return handler;
         } 
 
-        public static IList<IActorMessageHandler> RegisteredHandlers()
+        public static IList<IActorMessageHandler<object>> RegisteredHandlers()
         {
             return Handlers;
         }
