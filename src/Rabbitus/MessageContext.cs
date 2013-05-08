@@ -8,6 +8,6 @@
         public MessageContext(TMessage message)
         {
             Message = message;
-        }
+        } 
     }
 }
