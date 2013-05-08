@@ -46,6 +46,8 @@
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="IActorFactory.cs" />
     <Compile Include="IActorMessageHandler.cs" />
+    <Compile Include="IConfigureHandledBy.cs" />
+    <Compile Include="IConfigureHandleWhen.cs" />
     <Compile Include="IMessageContext.cs" />
     <Compile Include="IMessageDispatcher.cs" />
     <Compile Include="MessageContext.cs" />

@@ -9,7 +9,7 @@ namespace Rabbitus
         private static readonly IList<IActorMessageHandler<object>> Handlers = new List<IActorMessageHandler<object>>();
 //// ReSharper restore StaticFieldInGenericType
   
-        public static ActorMessageHandler<TActor, TMessage> ForMessage<TMessage>() 
+        public static IConfigureHandledBy<TActor, TMessage> ForMessage<TMessage>() 
             where TMessage : class
         {
             var handler = new ActorMessageHandler<TActor, TMessage>();
