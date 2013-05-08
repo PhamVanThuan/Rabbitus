@@ -1,4 +1,4 @@
 Rabbitus
 ========
 
-.NET Service Bus built with only RabbitMQ in mind
+.NET ??? built with only RabbitMQ in mind
