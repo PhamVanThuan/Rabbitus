@@ -4,8 +4,8 @@ namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
-        public RabbitusConfiguration Configuration { get; private set; }
-        public IMessageDispatcher Dispatcher { get; private set; }
+        public RabbitusConfiguration Configuration { get; set; }
+        public IMessageDispatcher Dispatcher { get; set; }
 
         public Rabbitus()
         {

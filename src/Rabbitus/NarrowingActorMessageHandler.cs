@@ -12,7 +12,9 @@
 
         public bool CanHandle(IMessageContext<object> context)
         {
-            return _handler.CanHandle(new NarrowingMessageContext<TMessage>(context));
+            var message = context.Message as TMessage;
+
+            return message != null && _handler.CanHandle(new MessageContext<TMessage>(message));
         }
 
         public void Handle(IActorFactory actorFactory, IMessageContext<object> context)

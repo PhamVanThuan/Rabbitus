@@ -8,7 +8,12 @@ namespace Rabbitus
     public class MessageDispatcher : IMessageDispatcher
     {
         private readonly IList<IActorMessageHandler<object>> _handlers = new List<IActorMessageHandler<object>>();
-        private readonly IActorFactory _actorFactory = new DefaultActorFactory();
+        private readonly IActorFactory _actorFactory;
+
+        public MessageDispatcher()
+        {
+            _actorFactory = new DefaultActorFactory();
+        }
 
         public void RegisterActor<TActor>()
             where TActor : Actor<TActor>

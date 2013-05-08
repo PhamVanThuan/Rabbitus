@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Rabbitus.Tests.TestActors;
+using Rabbitus.Tests.TestMessages;
 using Shouldly;
 using TestStack.BDDfy;
 
@@ -40,25 +42,6 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
         public void Execute()
         {
             this.BDDfy();
-        }
-
-        protected class TestMessage
-        {
-            public bool Received { get; set; }
-        }
-
-        protected class TestActor : Actor<TestActor>
-        {
-            static TestActor()
-            {
-                ForMessage<TestMessage>()
-                    .HandledBy((actor, context) => actor.HandleTestMessage(context));
-            }
-
-            public void HandleTestMessage(IMessageContext<TestMessage> context)
-            {
-                context.Message.Received = true;
-            }
         }
     }
 }
