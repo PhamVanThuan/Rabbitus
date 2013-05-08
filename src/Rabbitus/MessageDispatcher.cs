@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Rabbitus.Extensions;
 
 namespace Rabbitus
 {
@@ -11,21 +13,17 @@ namespace Rabbitus
         public void RegisterActor<TActor>()
             where TActor : Actor<TActor>
         {
-            var handlers = ActorConfiguration<TActor>.RegisteredHandlers();
-            foreach (var handler in handlers)
-            {
-                _handlers.Add(handler);
-            }  
+            RuntimeHelpers.RunClassConstructor(typeof(TActor).TypeHandle);
+            
+            ActorConfiguration<TActor>.RegisteredHandlers()
+                .ForEach(handler => _handlers.Add(handler));
         }
 
         public void Dispatch<TMessage>(IMessageContext<TMessage> context)
             where TMessage : class
         {
-            var handlers = _handlers.Where(h => h.CanHandle(context));
-            foreach (var handler in handlers)
-            {
-                handler.Handle(_actorFactory, context); 
-            }
+            _handlers.Where(handler => handler.CanHandle(context))
+                .ForEach(handler => handler.Handle(_actorFactory, context));
         }
     }
 }

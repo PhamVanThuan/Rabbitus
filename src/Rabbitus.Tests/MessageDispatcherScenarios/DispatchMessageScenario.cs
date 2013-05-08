@@ -1,46 +1,45 @@
-﻿using Givn;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Shouldly;
+using TestStack.BDDfy;
 
 namespace Rabbitus.Tests.MessageDispatcherScenarios
 {
     [TestFixture]
     public class DispatchMessageScenario
     {
-        private readonly MessageDispatcher _dispatcher;
+        private MessageDispatcher _dispatcher;
         private TestMessage _message;
-        
-        public DispatchMessageScenario()
+
+        [SetUp]
+        public void ScenarioSetup()
         {
             _dispatcher = new MessageDispatcher();
         }
 
-        protected void AMessage()
+        protected void GivenAMessage()
         {
             _message = new TestMessage();
         }
 
-        protected void ARegisteredActor()
+        protected void AndGivenARegisteredActor()
         {
            _dispatcher.RegisterActor<TestActor>();
         }
 
-        protected void DispatchingTheMessage()
+        protected void WhenDispatchingTheMessage()
         {
             _dispatcher.Dispatch(new MessageContext<TestMessage>(_message));
         }
 
-        protected void TheMessageIsDispatchedToTheActor()
+        protected void ThenTheMessageIsDispatchedToTheActor()
         {
-            _message.Received = true;
+            _message.Received.ShouldBe(true);
         }
 
         [Test]
         public void Execute()
         {
-            Giv.n(AMessage)
-                .And(ARegisteredActor);
-            Wh.n(DispatchingTheMessage);
-            Th.n(TheMessageIsDispatchedToTheActor);
+            this.BDDfy();
         }
 
         protected class TestMessage

@@ -1,25 +1,24 @@
-﻿using Givn;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Shouldly;
+using TestStack.BDDfy;
 
 namespace Rabbitus.Tests.ConfigurationScenarios
 {
-    [TestFixture]
     public class CreatingRabbitusDefaultConfigurationScenario
     {
         private IRabbitus _rabbitus;
 
-        protected void CreateRabbitusWithDefaultConfiguration()
+        protected void WhenCreateRabbitusWithDefaultConfiguration()
         {
             _rabbitus = RabbitusFactory.Configure(c => { });
         }
 
-        protected void TheRabbitHostIsLocalhost()
+        protected void ThenTheRabbitHostIsLocalhost()
         {
             _rabbitus.Configuration.RabbitHost.ShouldBe("localhost");
         }
 
-        protected void TheRabbitPortIs1572()
+        protected void AndTheRabbitPortIs1572()
         {
             _rabbitus.Configuration.RabbitPort.ShouldBe(1572);
         }
@@ -27,9 +26,7 @@ namespace Rabbitus.Tests.ConfigurationScenarios
         [Test]
         public void Execute()
         {
-            Wh.n(CreateRabbitusWithDefaultConfiguration);
-            Th.n(TheRabbitHostIsLocalhost)
-                .And(TheRabbitPortIs1572);
+            this.BDDfy();
         }
     }
 }
