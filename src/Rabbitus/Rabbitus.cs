@@ -7,10 +7,10 @@ namespace Rabbitus
         public RabbitusConfiguration Configuration { get; set; }
         public IMessageDispatcher Dispatcher { get; set; }
 
-        public Rabbitus()
+        public Rabbitus(RabbitusConfiguration configuration, IMessageDispatcher messageDispatcher)
         {
-            Configuration = new RabbitusConfiguration();
-            Dispatcher = new MessageDispatcher();
+            Configuration = configuration;
+            Dispatcher = messageDispatcher;
         }
 
         public void Publish<TMessage>(TMessage message) 

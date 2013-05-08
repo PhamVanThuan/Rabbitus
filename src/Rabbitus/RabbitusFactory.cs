@@ -1,4 +1,5 @@
 ﻿using System;
+using Rabbitus.Configuration;
 
 namespace Rabbitus
 {
@@ -6,7 +7,10 @@ namespace Rabbitus
     {
         public static IRabbitus Configure(Action<IRabbitus> configure)
         {
-            var rabbitus = new Rabbitus();
+            var configuration = new RabbitusConfiguration();
+            var actorFactory = new DefaultActorFactory();
+            var messageDispatcher = new MessageDispatcher(actorFactory);
+            var rabbitus = new Rabbitus(configuration, messageDispatcher);
             configure(rabbitus);
 
             return rabbitus;

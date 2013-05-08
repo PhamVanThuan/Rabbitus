@@ -15,7 +15,8 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
         [SetUp]
         public void ScenarioSetup()
         {
-            _dispatcher = new MessageDispatcher();
+            var actorFactory = new DefaultActorFactory();
+            _dispatcher = new MessageDispatcher(actorFactory);
         }
 
         protected void GivenAMessage()
