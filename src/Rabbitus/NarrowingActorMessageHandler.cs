@@ -19,7 +19,11 @@
 
         public void Handle(IActorFactory actorFactory, IMessageContext<object> context)
         {
-            _handler.Handle(actorFactory, new NarrowingMessageContext<TMessage>(context));
+            var message = context.Message as TMessage;
+            if (message == null)
+                return;
+
+            _handler.Handle(actorFactory, new MessageContext<TMessage>(message));
         }
     }
 }

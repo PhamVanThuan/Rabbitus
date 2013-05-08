@@ -51,7 +51,6 @@
     <Compile Include="MessageContext.cs" />
     <Compile Include="MessageDispatcher.cs" />
     <Compile Include="NarrowingActorMessageHandler.cs" />
-    <Compile Include="NarrowingMessageContext.cs" />
     <Compile Include="Rabbitus.cs" />
     <Compile Include="Configuration\RabbitusConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationExtensions.cs" />
