@@ -2,7 +2,7 @@
 {
     public interface IMessageDispatcher
     {
-        void Dispatch<TMessage>(IMessageContext<TMessage> context) 
-            where TMessage : class;
+        void RegisterActor<TActor>() where TActor : Actor<TActor>;
+        void Dispatch<TMessage>(IMessageContext<TMessage> context) where TMessage : class;
     }
 }

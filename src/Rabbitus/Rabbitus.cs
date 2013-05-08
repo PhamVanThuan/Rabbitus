@@ -18,5 +18,11 @@ namespace Rabbitus
         {
             Dispatcher.Dispatch(new MessageContext<TMessage>(message));
         }
+
+        public void Subscribe<TActor>()
+            where TActor : Actor<TActor>
+        {
+            Dispatcher.RegisterActor<TActor>();
+        }
     }
 }

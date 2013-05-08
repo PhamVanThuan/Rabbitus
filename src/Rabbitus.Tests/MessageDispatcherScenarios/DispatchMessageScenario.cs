@@ -23,7 +23,7 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
             _message = new TestMessage();
         }
 
-        protected void AndGivenARegisteredActor()
+        protected void AndGivenASubscribedActor()
         {
            _dispatcher.RegisterActor<TestActor>();
         }
