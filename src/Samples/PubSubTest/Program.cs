@@ -18,9 +18,13 @@ namespace PubSubTest
 
             Console.ReadLine();
 
+            Console.WriteLine("Publishing messages, please wait...");
+
             Enumerable.Range(1, PublishCount)
                 .AsParallel()
                 .ForAll(i => rabbitus.Publish(GetSampleMessage(i)));
+
+            Console.WriteLine("Messages published, bus will now start consuming from the queue...");
 
             rabbitus.Start();
             Console.ReadKey();
