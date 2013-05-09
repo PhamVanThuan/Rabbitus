@@ -14,7 +14,7 @@ namespace PubSubTest
         
         public void HandleSampleMessage(IMessageContext<SampleMessage> context)
         {
-            Console.WriteLine(context.Message.Text + " | " + context.Message.Timestamp);
+            Console.WriteLine(context.Message.Text);
         }
     }
 }

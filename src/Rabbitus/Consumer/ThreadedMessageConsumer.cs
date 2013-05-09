@@ -48,12 +48,12 @@ namespace Rabbitus.Consumer
         
         protected void Consume()
         {
-            _connection.WithNewChannel(channel =>
+            _connection.WithNewChannel(model =>
             {
-                var consumer = new QueueingBasicConsumer(channel);
+                var consumer = new QueueingBasicConsumer(model);
 
-                channel.BasicQos(0, 1000, false);
-                channel.BasicConsume("FOO", false, consumer);
+                model.BasicQos(0, 1000, false);
+                model.BasicConsume("FOO", false, consumer);
 
                 try
                 {
@@ -68,7 +68,7 @@ namespace Rabbitus.Consumer
                             .MakeGenericMethod(message.GetType())
                             .Invoke(this, new[] { message, e.BasicProperties });
 
-                        channel.BasicAck(e.DeliveryTag, false);
+                        model.BasicAck(e.DeliveryTag, false);
                     }
                 }
                 catch (OperationInterruptedException)

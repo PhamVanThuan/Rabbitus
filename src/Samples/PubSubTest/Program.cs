@@ -15,9 +15,9 @@ namespace PubSubTest
 
             var line = Console.ReadLine();
 
-            Enumerable.Range(1, 100000)
+            Enumerable.Range(1, 10)
                 .AsParallel()
-                .ForAll(i => rabbitus.Publish(new SampleMessage { Text = line + " " + i.ToString(), Timestamp = DateTime.Now }));
+                .ForAll(i => rabbitus.Publish(new SampleMessage { Text = line + " " + i.ToString() }));
 
             rabbitus.Start();
             Console.ReadKey();
