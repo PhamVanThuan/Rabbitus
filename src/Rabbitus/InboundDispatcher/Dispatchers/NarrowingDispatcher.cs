@@ -18,7 +18,7 @@ namespace Rabbitus.InboundDispatcher.Dispatchers
             if (message == null)
                 return;
 
-            _dispatcher.Dispatch(new MessageContext<TMessage>(message));
+            _dispatcher.Dispatch(new MessageContext<TMessage>(context.MessageId, message));
         }
     }
 }

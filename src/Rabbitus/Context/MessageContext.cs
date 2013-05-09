@@ -3,10 +3,12 @@
     public class MessageContext<TMessage> : IMessageContext<TMessage>
         where TMessage : class
     {
+        public string MessageId { get; private set; }
         public TMessage Message { get; private set; }
 
-        public MessageContext(TMessage message)
+        public MessageContext(string messageId, TMessage message)
         {
+            MessageId = messageId;
             Message = message;
         } 
     }

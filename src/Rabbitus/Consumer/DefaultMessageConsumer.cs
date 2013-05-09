@@ -66,14 +66,13 @@ namespace Rabbitus.Consumer
                     while (true)
                     {
                         var e = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
-                        var props = e.BasicProperties;
                         var body = Encoding.UTF8.GetString(e.Body);
                         var message = _serializer.DeserializeMessage(body);
                         
                         GetType()
                             .GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
                             .MakeGenericMethod(message.GetType())
-                            .Invoke(this, new[] {message});
+                            .Invoke(this, new[] {message, e.BasicProperties});
 
                         channel.BasicAck(e.DeliveryTag, false);
                     }
@@ -87,10 +86,10 @@ namespace Rabbitus.Consumer
             }
         }
 
-        protected void DispatchMessage<TMessage>(TMessage message)
+        protected void DispatchMessage<TMessage>(TMessage message, IBasicProperties properties)
             where TMessage : class
         {
-            var context = new MessageContext<TMessage>(message);
+            var context = new MessageContext<TMessage>(properties.MessageId, message);
             _inboundDispatcher.Dispatch(context);
         }
     }
