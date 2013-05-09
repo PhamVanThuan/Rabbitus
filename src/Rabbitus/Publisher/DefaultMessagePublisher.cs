@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using RabbitMQ.Client;
 using Rabbitus.RabbitMQ;
 using Rabbitus.Serialization;
 
@@ -14,6 +15,13 @@ namespace Rabbitus.Publisher
         {
             _connection = connection;
             _serializer = serializer;
+
+            using (var channel = _connection.CreateModel())
+            {
+                channel.ExchangeDeclare("FOO", ExchangeType.Direct, true);
+                channel.QueueDeclare("FOO", true, false, false, null);
+                channel.QueueBind("FOO", "FOO", "", null);
+            }
         }
 
         public void Publish<TMessage>(TMessage message) where TMessage : class

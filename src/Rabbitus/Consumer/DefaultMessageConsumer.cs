@@ -31,13 +31,6 @@ namespace Rabbitus.Consumer
 
         public void Start()
         {
-            using (var channel = _connection.CreateModel())
-            {
-                channel.ExchangeDeclare("FOO", ExchangeType.Direct);
-                channel.QueueDeclare("FOO", true, false, false, null);
-                channel.QueueBind("FOO", "FOO", "", null);   
-            }
-
             Enumerable.Range(0, 5)
                 .ForEach(i => StartConsumerThread());
         }
