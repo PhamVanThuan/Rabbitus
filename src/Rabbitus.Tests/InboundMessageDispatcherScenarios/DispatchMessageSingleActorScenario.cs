@@ -6,7 +6,7 @@ using TestStack.BDDfy;
 
 namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
 {
-    [TestFixture]
+    /*[TestFixture]
     public class DispatchMessageSingleActorScenario
     {
         private TestMessage _message;
@@ -30,7 +30,7 @@ namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
 
         protected void WhenDispatchingTheMessage()
         {
-            _bus.Publish(_message);
+            //_bus.Publish(_message);
         }
 
         protected void ThenTheMessageIsDispatchedToTheActor()
@@ -43,5 +43,5 @@ namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
         {
             this.BDDfy();
         }
-    }
+    }*/
 }

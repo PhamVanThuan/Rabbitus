@@ -1,20 +1,27 @@
-﻿using Rabbitus.Context;
-using Rabbitus.InboundDispatcher;
+﻿using System.Text;
+using Newtonsoft.Json;
+using Rabbitus.RabbitMQ;
 
 namespace Rabbitus.Publisher
 {
     public class DefaultMessagePublisher: IMessagePublisher
     {
-        private readonly IInboundMessageDispatcher _inboundDispatcher;
+        private readonly IRabbitMqConnection _connection;
 
-        public DefaultMessagePublisher(IInboundMessageDispatcher inboundDispatcher)
+        public DefaultMessagePublisher(IRabbitMqConnection connection)
         {
-            _inboundDispatcher = inboundDispatcher;
+            _connection = connection;
         }
 
         public void Publish<TMessage>(TMessage message) where TMessage : class
         {
-            _inboundDispatcher.Dispatch(new MessageContext<TMessage>(message));
+            using (var channel = _connection.CreateModel())
+            {
+                var data = JsonConvert.SerializeObject(message, new JsonSerializerSettings{TypeNameHandling = TypeNameHandling.All});
+                var body = Encoding.UTF8.GetBytes(data);
+
+                channel.BasicPublish("FOO", "", null, body);
+            }
         }
     }
 }

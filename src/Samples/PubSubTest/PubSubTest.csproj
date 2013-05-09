@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C1654BB-4646-4500-8F77-061D2EF5F548}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rabbitus</RootNamespace>
-    <AssemblyName>Rabbitus</AssemblyName>
+    <RootNamespace>PubSubTest</RootNamespace>
+    <AssemblyName>PubSubTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,11 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="RabbitMQ.Client">
-      <HintPath>..\packages\RabbitMQ.Client.3.0.4\lib\net30\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\..\packages\RabbitMQ.Client.3.0.4\lib\net30\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,35 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\Actor.cs" />
-    <Compile Include="Actors\Configuration\ActorMessageConfiguration.cs" />
-    <Compile Include="Actors\Factory\ActorFactory.cs" />
-    <Compile Include="InboundDispatcher\Dispatchers\ActorDispatcher.cs" />
-    <Compile Include="Actors\Factory\DefaultActorFactory.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Actors\Factory\IActorFactory.cs" />
-    <Compile Include="Actors\Configuration\IActorMessageConfiguration.cs" />
-    <Compile Include="Actors\Configuration\IConfigureHandledBy.cs" />
-    <Compile Include="Actors\Configuration\IConfigureHandleWhen.cs" />
-    <Compile Include="Context\IMessageContext.cs" />
-    <Compile Include="InboundDispatcher\Dispatchers\IDispatcher.cs" />
-    <Compile Include="InboundDispatcher\IInboundMessageDispatcher.cs" />
-    <Compile Include="Context\MessageContext.cs" />
-    <Compile Include="InboundDispatcher\InboundMessageDispatcher.cs" />
-    <Compile Include="InboundDispatcher\Dispatchers\NarrowingDispatcher.cs" />
-    <Compile Include="Consumer\DefaultMessageConsumer.cs" />
-    <Compile Include="Consumer\IMessageConsumer.cs" />
-    <Compile Include="Publisher\DefaultMessagePublisher.cs" />
-    <Compile Include="Publisher\IMessagePublisher.cs" />
-    <Compile Include="RabbitMQ\IRabbitMqConnection.cs" />
-    <Compile Include="RabbitMQ\RabbitMQConnection.cs" />
-    <Compile Include="Rabbitus.cs" />
-    <Compile Include="IRabbitus.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RabbitusFactory.cs" />
+    <Compile Include="SampleActor.cs" />
+    <Compile Include="SampleMessage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Rabbitus\Rabbitus.csproj">
+      <Project>{4c1654bb-4646-4500-8f77-061d2ef5f548}</Project>
+      <Name>Rabbitus</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

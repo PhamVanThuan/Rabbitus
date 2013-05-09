@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbitus", "Rabbitus\Rabbit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbitus.Tests", "Rabbitus.Tests\Rabbitus.Tests.csproj", "{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{983D05A1-619E-44C3-B956-8F8C3B023D4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubSubTest", "Samples\PubSubTest\PubSubTest.csproj", "{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +23,15 @@ Global
 		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9CD46FC-502F-4A0B-ADB3-991ACFE1C45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE327DDF-8D00-4EB7-8F15-52E0FC6CF378} = {983D05A1-619E-44C3-B956-8F8C3B023D4D}
 	EndGlobalSection
 EndGlobal

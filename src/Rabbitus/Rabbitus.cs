@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using RabbitMQ.Client;
 using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
 using Rabbitus.Consumer;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.Publisher;
+using Rabbitus.RabbitMQ;
 
 namespace Rabbitus
 {
@@ -16,9 +18,11 @@ namespace Rabbitus
 
         internal Rabbitus()
         {
+            var connection = new RabbitMqConnection();
+            
             _inboundDispatcher = new InboundMessageDispatcher();
-            _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher);
-            _messagePublisher = new DefaultMessagePublisher(_inboundDispatcher);
+            _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher, connection);
+            _messagePublisher = new DefaultMessagePublisher(connection);
         }
 
         public void Start()
