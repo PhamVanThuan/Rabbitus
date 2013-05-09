@@ -37,6 +37,7 @@ namespace Rabbitus.Consumer
                 var channel = _connection.CreateModel();
                 var consumer = new QueueingBasicConsumer(channel);
 
+                channel.BasicQos(0, 1000, false);
                 channel.BasicConsume("FOO", false, consumer);
                 
                 while (true)
