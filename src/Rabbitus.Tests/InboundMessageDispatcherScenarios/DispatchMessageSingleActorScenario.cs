@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using Rabbitus.Context;
-using Rabbitus.Factories;
-using Rabbitus.InboundDispatcher;
 using Rabbitus.Tests.TestActors;
 using Rabbitus.Tests.TestMessages;
 using Shouldly;

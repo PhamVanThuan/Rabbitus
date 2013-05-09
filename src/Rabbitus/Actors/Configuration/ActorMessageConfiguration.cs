@@ -36,9 +36,9 @@ namespace Rabbitus.Actors.Configuration
             CanHandle = predicate;
         }
 
-        public IDispatcher<object> CreateDispatcher(IActorFactory actorFactory)
+        public IDispatcher<object> CreateDispatcher()
         {
-            var dispatcher = new ActorMessageDispatcher<TActor, TMessage>(actorFactory, Handler, CanHandle);
+            var dispatcher = new ActorMessageDispatcher<TActor, TMessage>(Handler, CanHandle);
             return new NarrowingDispatcher<TMessage>(dispatcher);
         }
     }

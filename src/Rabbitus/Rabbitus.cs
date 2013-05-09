@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
 using Rabbitus.Context;
-using Rabbitus.Factories;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.MessageConsumer;
 
@@ -12,12 +11,10 @@ namespace Rabbitus
     public class Rabbitus : IRabbitus
     {
         private readonly InboundMessageDispatcher _inboundDispatcher;
-        private readonly DefaultActorFactory _actorFactory;
         private readonly DefaultMessageConsumer _messageConsumer;
 
         internal Rabbitus()
         {
-            _actorFactory = new DefaultActorFactory();
             _inboundDispatcher = new InboundMessageDispatcher();
             _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher);
         }
@@ -35,7 +32,7 @@ namespace Rabbitus
             var messageConfigurations = (IEnumerable<IActorMessageConfiguration>)Actor<TActor>.GetMessageConfigurations();
             foreach (var messageConfiguration in messageConfigurations)
             {
-                var dispatcher = messageConfiguration.CreateDispatcher(_actorFactory);
+                var dispatcher = messageConfiguration.CreateDispatcher();
                 _inboundDispatcher.RegisterDispatcher(dispatcher);
             }
         }
