@@ -48,7 +48,7 @@ namespace Rabbitus.Consumer
         
         protected void Consume()
         {
-            _connection.UsehNewChannel(model =>
+            _connection.WithChannel(model =>
             {
                 var consumer = new QueueingBasicConsumer(model);
 

@@ -16,7 +16,7 @@ namespace Rabbitus.OutboundDispatcher
             _connection = connection;
             _serializer = serializer;
 
-            _connection.UseSharedChannel(channel =>
+            _connection.WithChannel(channel =>
             {
                 channel.ExchangeDeclare("FOO", ExchangeType.Fanout, true);
                 channel.QueueDeclare("FOO", true, false, false, null);
@@ -26,7 +26,7 @@ namespace Rabbitus.OutboundDispatcher
 
         public void Dispatch<TMessage>(IMessageContext<TMessage> context) where TMessage : class
         {
-            _connection.UseSharedChannel(channel =>
+            _connection.WithChannel(channel =>
             {
                 var data = _serializer.SerializeMessage(context.Message);
                 var body = Encoding.UTF8.GetBytes(data);

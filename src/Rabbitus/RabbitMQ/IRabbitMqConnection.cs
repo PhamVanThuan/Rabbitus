@@ -5,7 +5,6 @@ namespace Rabbitus.RabbitMQ
 {
     public interface IRabbitMQConnection
     {
-        void UseSharedChannel(Action<IModel> action);
-        void UsehNewChannel(Action<IModel> action);
+        void WithChannel(Action<IModel> action);
     }
 }
