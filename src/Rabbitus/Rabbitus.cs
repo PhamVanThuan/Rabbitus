@@ -20,7 +20,7 @@ namespace Rabbitus
         internal Rabbitus()
         {
             var connection = new RabbitMqConnection();
-            var serializer = new JsonMessageSerializer();
+            var serializer = new DefaultMessageSerializer();
 
             _inboundDispatcher = new InboundMessageDispatcher();
             _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher, connection, serializer);

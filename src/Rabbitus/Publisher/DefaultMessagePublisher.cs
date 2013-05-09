@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using RabbitMQ.Client.Framing.v0_8;
 using Rabbitus.RabbitMQ;
 using Rabbitus.Serialization;
 
@@ -21,8 +23,13 @@ namespace Rabbitus.Publisher
             {
                 var data = _serializer.SerializeMessage(message);
                 var body = Encoding.UTF8.GetBytes(data);
+                var properties = channel.CreateBasicProperties();
 
-                channel.BasicPublish("FOO", "", null, body);
+                properties.MessageId = Guid.NewGuid().ToString();
+                properties.ContentType = _serializer.ContentType;
+
+                properties.SetPersistent(true);
+                channel.BasicPublish("FOO", "", properties, body);
             }
         }
     }
