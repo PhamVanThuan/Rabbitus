@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
@@ -10,6 +9,7 @@ using Rabbitus.Context;
 using Rabbitus.Extensions;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.RabbitMQ;
+using Rabbitus.Serialization;
 
 namespace Rabbitus.Consumer
 {
@@ -17,11 +17,16 @@ namespace Rabbitus.Consumer
     {
         private readonly IInboundMessageDispatcher _inboundDispatcher;
         private readonly IRabbitMqConnection _connection;
+        private readonly IMessageSerializer _serializer;
 
-        public DefaultMessageConsumer(IInboundMessageDispatcher inboundDispatcher, IRabbitMqConnection connection)
+        public DefaultMessageConsumer(
+            IInboundMessageDispatcher inboundDispatcher, 
+            IRabbitMqConnection connection,
+            IMessageSerializer serializer)
         {
             _inboundDispatcher = inboundDispatcher;
             _connection = connection;
+            _serializer = serializer;
         }
 
         public void Start()
@@ -63,12 +68,12 @@ namespace Rabbitus.Consumer
                         var e = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
                         var props = e.BasicProperties;
                         var body = Encoding.UTF8.GetString(e.Body);
-                        var message = JsonConvert.DeserializeObject(body,
-                            new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+                        var message = _serializer.DeserializeMessage(body);
 
-                        GetType().GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
+                        GetType()
+                            .GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
                             .MakeGenericMethod(message.GetType())
-                            .Invoke(this, new[] { message });
+                            .Invoke(this, new[] {message});
 
                         channel.BasicAck(e.DeliveryTag, false);
                     }
@@ -78,7 +83,6 @@ namespace Rabbitus.Consumer
                     // The consumer was removed, either through
                     // channel or connection closure, or through the
                     // action of IModel.BasicCancel().
-                    return;
                 } 
             }
         }

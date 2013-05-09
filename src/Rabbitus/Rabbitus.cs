@@ -7,6 +7,7 @@ using Rabbitus.Consumer;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.Publisher;
 using Rabbitus.RabbitMQ;
+using Rabbitus.Serialization;
 
 namespace Rabbitus
 {
@@ -19,10 +20,11 @@ namespace Rabbitus
         internal Rabbitus()
         {
             var connection = new RabbitMqConnection();
-            
+            var serializer = new JsonMessageSerializer();
+
             _inboundDispatcher = new InboundMessageDispatcher();
-            _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher, connection);
-            _messagePublisher = new DefaultMessagePublisher(connection);
+            _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher, connection, serializer);
+            _messagePublisher = new DefaultMessagePublisher(connection, serializer);
         }
 
         public void Start()
