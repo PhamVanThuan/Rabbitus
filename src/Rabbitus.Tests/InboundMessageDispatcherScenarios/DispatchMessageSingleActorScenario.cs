@@ -8,7 +8,7 @@ using Rabbitus.Tests.TestMessages;
 using Shouldly;
 using TestStack.BDDfy;
 
-namespace Rabbitus.Tests.MessageDispatcherScenarios
+namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
 {
     [TestFixture]
     public class DispatchMessageSingleActorScenario

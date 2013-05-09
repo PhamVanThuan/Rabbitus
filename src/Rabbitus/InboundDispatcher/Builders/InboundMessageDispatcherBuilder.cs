@@ -7,7 +7,7 @@ using Rabbitus.Factories;
 
 namespace Rabbitus.InboundDispatcher.Builders
 {
-    public class InboundMessageDispatcherBuilder
+    public class InboundMessageDispatcherBuilder : IBuilder<IInboundMessageDispatcher>
     {
         private readonly IActorFactory _actorFactory;
         private readonly IList<Type> _actorTypes;
