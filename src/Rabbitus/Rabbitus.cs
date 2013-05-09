@@ -5,18 +5,21 @@ using Rabbitus.Actors.Configuration;
 using Rabbitus.Context;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.MessageConsumer;
+using Rabbitus.MessagePublisher;
 
 namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
         private readonly InboundMessageDispatcher _inboundDispatcher;
-        private readonly DefaultMessageConsumer _messageConsumer;
+        private readonly IMessageConsumer _messageConsumer;
+        private readonly IMessagePublisher _messagePublisher;
 
         internal Rabbitus()
         {
             _inboundDispatcher = new InboundMessageDispatcher();
             _messageConsumer = new DefaultMessageConsumer(_inboundDispatcher);
+            _messagePublisher = new DefaultMessagePublisher(_inboundDispatcher);
         }
 
         public void Start()
@@ -40,7 +43,7 @@ namespace Rabbitus
         public void Publish<TMessage>(TMessage message) 
             where TMessage : class
         {
-            _inboundDispatcher.Dispatch(new MessageContext<TMessage>(message));
+            _messagePublisher.Publish(message);
         }
     }
 }
