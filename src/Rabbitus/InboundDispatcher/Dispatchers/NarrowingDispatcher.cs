@@ -1,7 +1,6 @@
 ﻿using Rabbitus.Context;
-using Rabbitus.InboundDispatcher.Dispatchers;
 
-namespace Rabbitus.InboundDispatcher
+namespace Rabbitus.InboundDispatcher.Dispatchers
 {
     public class NarrowingDispatcher<TMessage> : IDispatcher<object>
         where TMessage : class
