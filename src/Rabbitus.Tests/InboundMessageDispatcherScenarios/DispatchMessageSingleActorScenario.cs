@@ -2,7 +2,6 @@
 using Rabbitus.Context;
 using Rabbitus.Factories;
 using Rabbitus.InboundDispatcher;
-using Rabbitus.InboundDispatcher.Builders;
 using Rabbitus.Tests.TestActors;
 using Rabbitus.Tests.TestMessages;
 using Shouldly;
@@ -13,20 +12,18 @@ namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
     [TestFixture]
     public class DispatchMessageSingleActorScenario
     {
-        private IInboundMessageDispatcher _dispatcher;
         private TestMessage _message;
-        private DefaultActorFactory _actorFactory;
+        private IRabbitus _bus;
 
         [SetUp]
         public void ScenarioSetup()
         {
-            _actorFactory = new DefaultActorFactory();
+            _bus = RabbitusFactory.Configure(c => { });
         }
 
-        public void GivenAnInboundDispatcherCreatedWithRegisteredActorTypes()
+        public void GivenASubscribedActor()
         {
-            var builder = new InboundMessageDispatcherBuilder(_actorFactory, new[] {typeof (TestActor)});
-            _dispatcher = builder.Build();
+            _bus.Subscribe<TestActor>();
         }
 
         protected void AndGivenAMessage()
@@ -36,7 +33,7 @@ namespace Rabbitus.Tests.InboundMessageDispatcherScenarios
 
         protected void WhenDispatchingTheMessage()
         {
-            _dispatcher.Dispatch(new MessageContext<TestMessage>(_message));
+            _bus.Publish(_message);
         }
 
         protected void ThenTheMessageIsDispatchedToTheActor()
