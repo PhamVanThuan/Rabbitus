@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using RabbitMQ.Client.Framing.v0_8;
 using Rabbitus.RabbitMQ;
 using Rabbitus.Serialization;
 
