@@ -18,7 +18,7 @@ namespace Rabbitus.RabbitMQ
             _model = _connection.CreateModel();
         }
 
-        public void WithSharedChannel(Action<IModel> action)
+        public void UseSharedChannel(Action<IModel> action)
         {
             lock (ModelLock)
             {
@@ -26,7 +26,7 @@ namespace Rabbitus.RabbitMQ
             }
         }
 
-        public void WithNewChannel(Action<IModel> action)
+        public void UsehNewChannel(Action<IModel> action)
         {
             var model = _connection.CreateModel();
 

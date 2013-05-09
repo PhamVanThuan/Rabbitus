@@ -16,7 +16,7 @@ namespace Rabbitus.Publisher
             _connection = connection;
             _serializer = serializer;
 
-            _connection.WithSharedChannel(channel =>
+            _connection.UseSharedChannel(channel =>
             {
                 channel.ExchangeDeclare("FOO", ExchangeType.Fanout, true);
                 channel.QueueDeclare("FOO", true, false, false, null);
@@ -26,7 +26,7 @@ namespace Rabbitus.Publisher
 
         public void Publish<TMessage>(TMessage message) where TMessage : class
         {
-            _connection.WithSharedChannel(channel =>
+            _connection.UseSharedChannel(channel =>
             {
                 var data = _serializer.SerializeMessage(message);
                 var body = Encoding.UTF8.GetBytes(data);
