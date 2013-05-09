@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
 using Rabbitus.Context;
+using Rabbitus.Extensions;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.RabbitMQ;
 
@@ -32,23 +33,38 @@ namespace Rabbitus.Consumer
                 channel.QueueBind("FOO", "FOO", "", null);   
             }
 
-            Task.Factory.StartNew(() =>
-            {
-                var channel = _connection.CreateModel();
-                var consumer = new QueueingBasicConsumer(channel);
+            Enumerable.Range(0, 5)
+                .ForEach(i => StartConsumerThread());
+        }
 
+        private void StartConsumerThread()
+        {
+            Task.Factory.StartNew(Consume)
+                .ContinueWith(t => StartConsumerThread());
+        }
+
+        public void Stop()
+        {
+            // Wait and stop consume thread
+        }
+
+        protected void Consume()
+        {
+            using (var channel = _connection.CreateModel())
+            {
                 channel.BasicQos(0, 1000, false);
+                var consumer = new QueueingBasicConsumer(channel);
                 channel.BasicConsume("FOO", false, consumer);
-                
-                while (true)
+
+                try
                 {
-                    try
+                    while (true)
                     {
-                        var e = (BasicDeliverEventArgs) consumer.Queue.Dequeue();
+                        var e = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
                         var props = e.BasicProperties;
                         var body = Encoding.UTF8.GetString(e.Body);
                         var message = JsonConvert.DeserializeObject(body,
-                            new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+                            new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
 
                         GetType().GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
                             .MakeGenericMethod(message.GetType())
@@ -56,20 +72,15 @@ namespace Rabbitus.Consumer
 
                         channel.BasicAck(e.DeliveryTag, false);
                     }
-                    catch (OperationInterruptedException)
-                    {
-                        // The consumer was removed, either through
-                        // channel or connection closure, or through the
-                        // action of IModel.BasicCancel().
-                        break;
-                    }
                 }
-            });
-        }
-
-        public void Stop()
-        {
-            // Wait and stop consume thread
+                catch (OperationInterruptedException)
+                {
+                    // The consumer was removed, either through
+                    // channel or connection closure, or through the
+                    // action of IModel.BasicCancel().
+                    return;
+                } 
+            }
         }
 
         protected void DispatchMessage<TMessage>(TMessage message)

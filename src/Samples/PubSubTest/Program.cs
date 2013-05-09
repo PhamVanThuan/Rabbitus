@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Rabbitus;
-using Rabbitus.Extensions;
 
 namespace PubSubTest
 {
@@ -11,22 +10,18 @@ namespace PubSubTest
         {
             var rabbitus = RabbitusFactory.Configure(c => { });
 
-            rabbitus.Subscribe<SampleActor>();
-            rabbitus.Start();
+            //rabbitus.Subscribe<SampleActor>();
+            //rabbitus.Start();
 
             while (true)
             {
                 Console.WriteLine("Enter {Message}...");
 
                 var line = Console.ReadLine();
-                var message = new SampleMessage
-                {
-                    Message = line,
-                    Timestamp = DateTime.Now
-                };
-
-                Enumerable.Range(0, 100000)
-                    .ForEach(i => rabbitus.Publish(message));
+                
+                Enumerable.Range(0, 1000000)
+                    .AsParallel()
+                    .ForAll(i => rabbitus.Publish(new SampleMessage { Message = line + " : " + i.ToString(), Timestamp = DateTime.Now }));
             }
         }
     }
