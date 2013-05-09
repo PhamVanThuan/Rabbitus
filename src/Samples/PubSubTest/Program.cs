@@ -15,7 +15,7 @@ namespace PubSubTest
 
             var line = Console.ReadLine();
 
-            Enumerable.Range(1, 10)
+            Enumerable.Range(1, 100000)
                 .AsParallel()
                 .ForAll(i => rabbitus.Publish(new SampleMessage { Text = line + " " + i.ToString() }));
 
