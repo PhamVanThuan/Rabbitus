@@ -1,6 +1,6 @@
-﻿namespace Rabbitus
+﻿namespace Rabbitus.Context
 {
-    public interface IMessageContext<out TMessage>
+    public interface IContext<out TMessage>
         where TMessage : class
     {
         TMessage Message { get; }

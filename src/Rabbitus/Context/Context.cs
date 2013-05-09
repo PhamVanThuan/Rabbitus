@@ -1,11 +1,11 @@
-﻿namespace Rabbitus
+﻿namespace Rabbitus.Context
 {
-    public class MessageContext<TMessage> : IMessageContext<TMessage>
+    public class Context<TMessage> : IContext<TMessage>
         where TMessage : class
     {
         public TMessage Message { get; private set; }
 
-        public MessageContext(TMessage message)
+        public Context(TMessage message)
         {
             Message = message;
         } 

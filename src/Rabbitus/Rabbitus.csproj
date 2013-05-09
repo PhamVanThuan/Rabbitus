@@ -39,20 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actor.cs" />
-    <Compile Include="ActorConfiguration.cs" />
-    <Compile Include="ActorMessageHandler.cs" />
-    <Compile Include="DefaultActorFactory.cs" />
+    <Compile Include="Actors\Actor.cs" />
+    <Compile Include="Actors\Configuration\ActorConfiguration.cs" />
+    <Compile Include="Actors\Configuration\ActorHandlerConfiguration.cs" />
+    <Compile Include="InboundDispatcher\Dispatchers\ActorHandlerDispatcher.cs" />
+    <Compile Include="Factories\DefaultActorFactory.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="IActorFactory.cs" />
-    <Compile Include="IActorMessageHandler.cs" />
-    <Compile Include="IConfigureHandledBy.cs" />
-    <Compile Include="IConfigureHandleWhen.cs" />
-    <Compile Include="IMessageContext.cs" />
-    <Compile Include="IMessageDispatcher.cs" />
-    <Compile Include="MessageContext.cs" />
-    <Compile Include="MessageDispatcher.cs" />
-    <Compile Include="NarrowingActorMessageHandler.cs" />
+    <Compile Include="Factories\IActorFactory.cs" />
+    <Compile Include="Actors\Configuration\IActorHandlerConfiguration.cs" />
+    <Compile Include="Actors\Configuration\IConfigureHandledBy.cs" />
+    <Compile Include="Actors\Configuration\IConfigureHandleWhen.cs" />
+    <Compile Include="Context\IContext.cs" />
+    <Compile Include="InboundDispatcher\Dispatchers\IDispatcher.cs" />
+    <Compile Include="InboundDispatcher\IInboundMessageDispatcher.cs" />
+    <Compile Include="Context\Context.cs" />
+    <Compile Include="InboundDispatcher\InboundMessageDispatcher.cs" />
+    <Compile Include="InboundDispatcher\NarrowingDispatcher.cs" />
     <Compile Include="Rabbitus.cs" />
     <Compile Include="Configuration\RabbitusConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationExtensions.cs" />

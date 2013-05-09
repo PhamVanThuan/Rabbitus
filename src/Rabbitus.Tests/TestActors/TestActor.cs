@@ -1,4 +1,6 @@
-﻿using Rabbitus.Tests.TestMessages;
+﻿using Rabbitus.Actors;
+using Rabbitus.Context;
+using Rabbitus.Tests.TestMessages;
 
 namespace Rabbitus.Tests.TestActors
 {
@@ -10,7 +12,7 @@ namespace Rabbitus.Tests.TestActors
                 .HandledBy((actor, context) => actor.HandleTestMessage(context));
         }
 
-        public void HandleTestMessage(IMessageContext<TestMessage> context)
+        public void HandleTestMessage(IContext<TestMessage> context)
         {
             context.Message.Received = true;
         }

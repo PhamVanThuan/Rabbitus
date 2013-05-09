@@ -1,4 +1,6 @@
-﻿namespace Rabbitus
+﻿using Rabbitus.Actors.Configuration;
+
+namespace Rabbitus.Actors
 {
     public class Actor<TActor>
         where TActor : Actor<TActor>

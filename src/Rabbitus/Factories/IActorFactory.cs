@@ -1,6 +1,7 @@
 ﻿using System;
+using Rabbitus.Actors;
 
-namespace Rabbitus
+namespace Rabbitus.Factories
 {
     public interface IActorFactory
     {

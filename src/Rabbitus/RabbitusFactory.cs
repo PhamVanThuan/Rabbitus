@@ -8,9 +8,7 @@ namespace Rabbitus
         public static IRabbitus Configure(Action<RabbitusConfiguration> configure)
         {
             var configuration = new RabbitusConfiguration();
-            var actorFactory = new DefaultActorFactory();
-            var messageDispatcher = new MessageDispatcher(actorFactory);
-            var rabbitus = new Rabbitus(configuration, messageDispatcher);
+            var rabbitus = new Rabbitus(configuration);
 
             configure(configuration);
 
