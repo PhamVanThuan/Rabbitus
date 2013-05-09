@@ -2,7 +2,7 @@
 using Rabbitus.Context;
 using Rabbitus.Factories;
 using Rabbitus.InboundDispatcher;
-using Rabbitus.InboundDispatcher.Builder;
+using Rabbitus.InboundDispatcher.Builders;
 using Rabbitus.Tests.TestActors;
 using Rabbitus.Tests.TestMessages;
 using Shouldly;

@@ -16,10 +16,5 @@ namespace Rabbitus
             where TMessage : class
         {
         }
-
-        public void Subscribe<TActor>()
-            where TActor : Actor<TActor>
-        {
-        }
     }
 }

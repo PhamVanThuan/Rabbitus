@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
 using Rabbitus.Factories;
-using Rabbitus.InboundDispatcher.Dispatchers;
 
-namespace Rabbitus.InboundDispatcher.Builder
+namespace Rabbitus.InboundDispatcher.Builders
 {
     public class InboundMessageDispatcherBuilder
     {
