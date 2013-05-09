@@ -14,7 +14,7 @@ namespace PubSubTest
         
         public void HandleSampleMessage(IMessageContext<SampleMessage> context)
         {
-            Console.WriteLine(context.Message.Text);
+            Console.WriteLine(context.Message.Name);
         }
     }
 }
