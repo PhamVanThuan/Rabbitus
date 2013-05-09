@@ -48,6 +48,7 @@
     <Compile Include="Actors\Actor.cs" />
     <Compile Include="Actors\Configuration\ActorMessageConfiguration.cs" />
     <Compile Include="Actors\Factory\ActorFactory.cs" />
+    <Compile Include="Extensions\SubscribeExtensions.cs" />
     <Compile Include="InboundDispatcher\Dispatchers\ActorDispatcher.cs" />
     <Compile Include="Actors\Factory\DefaultActorFactory.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
@@ -63,8 +64,8 @@
     <Compile Include="InboundDispatcher\Dispatchers\NarrowingDispatcher.cs" />
     <Compile Include="Consumer\ThreadedMessageConsumer.cs" />
     <Compile Include="Consumer\IMessageConsumer.cs" />
-    <Compile Include="Publisher\MessagePublisher.cs" />
-    <Compile Include="Publisher\IMessagePublisher.cs" />
+    <Compile Include="Publisher\OutboundMessageDispatcher.cs" />
+    <Compile Include="Publisher\IOutboundMessageDispatcher.cs" />
     <Compile Include="RabbitMQ\IRabbitMQConnection.cs" />
     <Compile Include="RabbitMQ\RabbitMQConnection.cs" />
     <Compile Include="Rabbitus.cs" />
@@ -77,6 +78,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

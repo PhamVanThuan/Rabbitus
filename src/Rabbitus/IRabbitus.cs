@@ -1,11 +1,16 @@
-using Rabbitus.Actors;
+using Rabbitus.Consumer;
+using Rabbitus.InboundDispatcher;
+using Rabbitus.Publisher;
 
 namespace Rabbitus
 {
 	public interface IRabbitus
 	{
+        IInboundMessageDispatcher InboundDispatcher { get; }
+        IOutboundMessageDispatcher OutboundDispatcher { get; }
+        IMessageConsumer MessageConsumer { get; }
+
         void Start();
-	    void Subscribe<TActor>() where TActor : Actor<TActor>;
 	    void Publish<TMessage>(TMessage message) where TMessage : class;
 	}
 }

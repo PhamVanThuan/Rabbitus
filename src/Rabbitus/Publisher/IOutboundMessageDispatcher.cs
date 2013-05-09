@@ -1,6 +1,6 @@
 ﻿namespace Rabbitus.Publisher
 {
-    public interface IMessagePublisher
+    public interface IOutboundMessageDispatcher
     {
         void Publish<TMessage>(TMessage message) where TMessage : class;
     }

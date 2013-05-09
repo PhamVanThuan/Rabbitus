@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using RabbitMQ.Client;
 using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
 using Rabbitus.Consumer;
@@ -13,42 +12,29 @@ namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
-        private readonly IInboundMessageDispatcher _inboundDispatcher;
-        private readonly IMessageConsumer _messageConsumer;
-        private readonly IMessagePublisher _messagePublisher;
+        public IInboundMessageDispatcher InboundDispatcher { get; private set; }
+        public IOutboundMessageDispatcher OutboundDispatcher { get; private set; }
+        public IMessageConsumer MessageConsumer { get; private set; }
 
         internal Rabbitus()
         {
             var connection = new RabbitMqConnection();
             var serializer = new JsonMessageSerializer();
 
-            _inboundDispatcher = new InboundMessageDispatcher();
-            _messageConsumer = new ThreadedMessageConsumer(_inboundDispatcher, connection, serializer);
-            _messagePublisher = new MessagePublisher(connection, serializer);
+            InboundDispatcher = new InboundMessageDispatcher();
+            OutboundDispatcher = new OutboundMessageDispatcher(connection, serializer);
+            MessageConsumer = new ThreadedMessageConsumer(InboundDispatcher, connection, serializer);
         }
 
         public void Start()
         {
-            _messageConsumer.Start();
-        }
-
-        public void Subscribe<TActor>()
-            where TActor : Actor<TActor>
-        {
-            RuntimeHelpers.RunClassConstructor(typeof(TActor).TypeHandle);
-
-            var messageConfigurations = (IEnumerable<IActorMessageConfiguration>)Actor<TActor>.GetMessageConfigurations();
-            foreach (var messageConfiguration in messageConfigurations)
-            {
-                var dispatcher = messageConfiguration.CreateDispatcher();
-                _inboundDispatcher.RegisterDispatcher(dispatcher);
-            }
+            MessageConsumer.Start();
         }
 
         public void Publish<TMessage>(TMessage message) 
             where TMessage : class
         {
-            _messagePublisher.Publish(message);
+            OutboundDispatcher.Publish(message);
         }
     }
 }

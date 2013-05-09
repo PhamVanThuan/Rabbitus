@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Rabbitus;
+using Rabbitus.Extensions;
 
 namespace PubSubTest
 {
