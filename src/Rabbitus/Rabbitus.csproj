@@ -58,7 +58,6 @@
     <Compile Include="MessageConsumer\DefaultMessageConsumer.cs" />
     <Compile Include="MessageConsumer\IMessageConsumer.cs" />
     <Compile Include="Rabbitus.cs" />
-    <Compile Include="Configuration\ConfigurationExtensions.cs" />
     <Compile Include="IRabbitus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitusFactory.cs" />
