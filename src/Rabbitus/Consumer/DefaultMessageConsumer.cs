@@ -42,17 +42,17 @@ namespace Rabbitus.Consumer
                 .ForEach(i => StartConsumerThread());
         }
 
-        private void StartConsumerThread()
-        {
-            Task.Factory.StartNew(Consume)
-                .ContinueWith(t => StartConsumerThread());
-        }
-
         public void Stop()
         {
             // Wait and stop consume thread
         }
 
+        private void StartConsumerThread()
+        {
+            Task.Factory.StartNew(Consume)
+                .ContinueWith(t => StartConsumerThread());
+        }
+        
         protected void Consume()
         {
             using (var channel = _connection.CreateModel())
