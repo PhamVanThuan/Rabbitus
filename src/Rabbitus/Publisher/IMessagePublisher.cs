@@ -1,4 +1,4 @@
-﻿namespace Rabbitus.MessagePublisher
+﻿namespace Rabbitus.Publisher
 {
     public interface IMessagePublisher
     {

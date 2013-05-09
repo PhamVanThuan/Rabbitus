@@ -37,7 +37,7 @@ namespace Rabbitus.Actors.Configuration
 
         public IDispatcher<object> CreateDispatcher()
         {
-            var dispatcher = new ActorMessageDispatcher<TActor, TMessage>(Handler, CanHandle);
+            var dispatcher = new ActorDispatcher<TActor, TMessage>(Handler, CanHandle);
             return new NarrowingDispatcher<TMessage>(dispatcher);
         }
     }

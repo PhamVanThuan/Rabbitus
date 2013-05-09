@@ -1,7 +1,7 @@
 ﻿using Rabbitus.Context;
 using Rabbitus.InboundDispatcher;
 
-namespace Rabbitus.MessagePublisher
+namespace Rabbitus.Publisher
 {
     public class DefaultMessagePublisher: IMessagePublisher
     {

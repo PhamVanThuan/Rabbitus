@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
+using Rabbitus.Consumer;
 using Rabbitus.InboundDispatcher;
-using Rabbitus.MessageConsumer;
-using Rabbitus.MessagePublisher;
+using Rabbitus.Publisher;
 
 namespace Rabbitus
 {

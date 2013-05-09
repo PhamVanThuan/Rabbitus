@@ -1,6 +1,6 @@
 ﻿using Rabbitus.InboundDispatcher;
 
-namespace Rabbitus.MessageConsumer
+namespace Rabbitus.Consumer
 {
     public class DefaultMessageConsumer : IMessageConsumer
     {

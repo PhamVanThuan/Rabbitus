@@ -1,4 +1,4 @@
-﻿namespace Rabbitus.MessageConsumer
+﻿namespace Rabbitus.Consumer
 {
     public interface IMessageConsumer
     {
