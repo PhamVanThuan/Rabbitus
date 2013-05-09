@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Rabbitus.Actors;
 using Rabbitus.Actors.Configuration;
-using Rabbitus.Context;
 using Rabbitus.InboundDispatcher;
 using Rabbitus.MessageConsumer;
 using Rabbitus.MessagePublisher;
@@ -11,7 +10,7 @@ namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
-        private readonly InboundMessageDispatcher _inboundDispatcher;
+        private readonly IInboundMessageDispatcher _inboundDispatcher;
         private readonly IMessageConsumer _messageConsumer;
         private readonly IMessagePublisher _messagePublisher;
 
