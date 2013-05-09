@@ -10,23 +10,23 @@ namespace Rabbitus.Publisher
     {
         private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
-
+       
         public MessagePublisher(IRabbitMQConnection connection, IMessageSerializer serializer)
         {
             _connection = connection;
             _serializer = serializer;
 
-            using (var channel = _connection.CreateModel())
+            _connection.WithSharedChannel(channel =>
             {
-                channel.ExchangeDeclare("FOO", ExchangeType.Direct, true);
+                channel.ExchangeDeclare("FOO", ExchangeType.Fanout, true);
                 channel.QueueDeclare("FOO", true, false, false, null);
                 channel.QueueBind("FOO", "FOO", "", null);
-            }
+            });
         }
 
         public void Publish<TMessage>(TMessage message) where TMessage : class
         {
-            using (var channel = _connection.CreateModel())
+            _connection.WithSharedChannel(channel =>
             {
                 var data = _serializer.SerializeMessage(message);
                 var body = Encoding.UTF8.GetBytes(data);
@@ -37,7 +37,7 @@ namespace Rabbitus.Publisher
 
                 properties.SetPersistent(true);
                 channel.BasicPublish("FOO", "", properties, body);
-            }
+            });
         }
     }
 }

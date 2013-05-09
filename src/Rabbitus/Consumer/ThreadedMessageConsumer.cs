@@ -48,10 +48,11 @@ namespace Rabbitus.Consumer
         
         protected void Consume()
         {
-            using (var channel = _connection.CreateModel())
+            _connection.WithNewChannel(channel =>
             {
-                channel.BasicQos(0, 1000, false);
                 var consumer = new QueueingBasicConsumer(channel);
+
+                channel.BasicQos(0, 1000, false);
                 channel.BasicConsume("FOO", false, consumer);
 
                 try
@@ -61,11 +62,11 @@ namespace Rabbitus.Consumer
                         var e = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
                         var body = Encoding.UTF8.GetString(e.Body);
                         var message = _serializer.DeserializeMessage(body);
-                        
+
                         GetType()
                             .GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
                             .MakeGenericMethod(message.GetType())
-                            .Invoke(this, new[] {message, e.BasicProperties});
+                            .Invoke(this, new[] { message, e.BasicProperties });
 
                         channel.BasicAck(e.DeliveryTag, false);
                     }
@@ -75,8 +76,8 @@ namespace Rabbitus.Consumer
                     // The consumer was removed, either through
                     // channel or connection closure, or through the
                     // action of IModel.BasicCancel().
-                } 
-            }
+                }
+            });
         }
 
         protected void DispatchMessage<TMessage>(TMessage message, IBasicProperties properties)

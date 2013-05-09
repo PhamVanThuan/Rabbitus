@@ -1,9 +1,11 @@
-﻿using RabbitMQ.Client;
+﻿using System;
+using RabbitMQ.Client;
 
 namespace Rabbitus.RabbitMQ
 {
     public interface IRabbitMQConnection
     {
-        IModel CreateModel();
+        void WithSharedChannel(Action<IModel> action);
+        void WithNewChannel(Action<IModel> action);
     }
 }
