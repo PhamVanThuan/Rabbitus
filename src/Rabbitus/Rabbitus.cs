@@ -2,7 +2,7 @@ namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
-        public Rabbitus()
+        internal Rabbitus()
         {
         }
 
