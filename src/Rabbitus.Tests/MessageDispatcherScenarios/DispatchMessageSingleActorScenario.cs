@@ -11,7 +11,7 @@ using TestStack.BDDfy;
 namespace Rabbitus.Tests.MessageDispatcherScenarios
 {
     [TestFixture]
-    public class DispatchMessageScenario
+    public class DispatchMessageSingleActorScenario
     {
         private IInboundMessageDispatcher _dispatcher;
         private TestMessage _message;
