@@ -1,15 +1,9 @@
-using Rabbitus.Actors;
-using Rabbitus.Configuration;
-
 namespace Rabbitus
 {
     public class Rabbitus : IRabbitus
     {
-        public RabbitusConfiguration Configuration { get; set; }
-
-        public Rabbitus(RabbitusConfiguration configuration)
+        public Rabbitus()
         {
-            Configuration = configuration;
         }
 
         public void Publish<TMessage>(TMessage message) 

@@ -4,9 +4,7 @@
     {
          public static IRabbitus WithQueueNamed(this IRabbitus rabbitus, string queue)
          {
-             rabbitus.Configuration.QueueName = queue;
-
-             return rabbitus;
+            return rabbitus;
          }
     }
 }

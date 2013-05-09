@@ -1,16 +1,13 @@
 ﻿using System;
-using Rabbitus.Configuration;
 
 namespace Rabbitus
 {
     public static class RabbitusFactory
     {
-        public static IRabbitus Configure(Action<RabbitusConfiguration> configure)
+        public static IRabbitus Configure(Action<IRabbitus> configure)
         {
-            var configuration = new RabbitusConfiguration();
-            var rabbitus = new Rabbitus(configuration);
-
-            configure(configuration);
+            var rabbitus = new Rabbitus();
+            configure(rabbitus);
 
             return rabbitus;
         }

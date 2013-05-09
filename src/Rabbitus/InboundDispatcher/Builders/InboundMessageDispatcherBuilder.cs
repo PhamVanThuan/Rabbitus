@@ -22,12 +22,12 @@ namespace Rabbitus.InboundDispatcher.Builders
         {
             var inboundDispatcher = new InboundMessageDispatcher();
 
-            RegisterDispatchersForActors(inboundDispatcher);
+            RegisterMessageDispatchersForActors(inboundDispatcher);
 
             return inboundDispatcher;
         }
 
-        private void RegisterDispatchersForActors(InboundMessageDispatcher inboundDispatcher)
+        private void RegisterMessageDispatchersForActors(InboundMessageDispatcher inboundDispatcher)
         {
             foreach (var actorType in _actorTypes)
             {

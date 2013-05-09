@@ -55,8 +55,9 @@
     <Compile Include="Context\MessageContext.cs" />
     <Compile Include="InboundDispatcher\InboundMessageDispatcher.cs" />
     <Compile Include="InboundDispatcher\Dispatchers\NarrowingDispatcher.cs" />
+    <Compile Include="MessageConsumer\DefaultMessageConsumer.cs" />
+    <Compile Include="MessageConsumer\IMessageConsumer.cs" />
     <Compile Include="Rabbitus.cs" />
-    <Compile Include="Configuration\RabbitusConfiguration.cs" />
     <Compile Include="Configuration\ConfigurationExtensions.cs" />
     <Compile Include="IRabbitus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
