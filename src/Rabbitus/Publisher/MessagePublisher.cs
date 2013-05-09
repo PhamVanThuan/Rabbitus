@@ -6,12 +6,12 @@ using Rabbitus.Serialization;
 
 namespace Rabbitus.Publisher
 {
-    public class DefaultMessagePublisher: IMessagePublisher
+    public class MessagePublisher : IMessagePublisher
     {
         private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
 
-        public DefaultMessagePublisher(IRabbitMQConnection connection, IMessageSerializer serializer)
+        public MessagePublisher(IRabbitMQConnection connection, IMessageSerializer serializer)
         {
             _connection = connection;
             _serializer = serializer;

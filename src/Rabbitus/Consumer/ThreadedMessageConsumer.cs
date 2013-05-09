@@ -13,13 +13,13 @@ using Rabbitus.Serialization;
 
 namespace Rabbitus.Consumer
 {
-    public class DefaultMessageConsumer : IMessageConsumer
+    public class ThreadedMessageConsumer : IMessageConsumer
     {
         private readonly IInboundMessageDispatcher _inboundDispatcher;
         private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
 
-        public DefaultMessageConsumer(
+        public ThreadedMessageConsumer(
             IInboundMessageDispatcher inboundDispatcher, 
             IRabbitMQConnection connection,
             IMessageSerializer serializer)

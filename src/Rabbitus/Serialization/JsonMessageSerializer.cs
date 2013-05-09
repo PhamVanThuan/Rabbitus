@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Rabbitus.Serialization
 {
-    public class DefaultMessageSerializer : IMessageSerializer
+    public class JsonMessageSerializer : IMessageSerializer
     {
         private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
         {
