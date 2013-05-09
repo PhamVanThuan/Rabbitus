@@ -16,12 +16,12 @@ namespace Rabbitus.Consumer
     public class DefaultMessageConsumer : IMessageConsumer
     {
         private readonly IInboundMessageDispatcher _inboundDispatcher;
-        private readonly IRabbitMqConnection _connection;
+        private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
 
         public DefaultMessageConsumer(
             IInboundMessageDispatcher inboundDispatcher, 
-            IRabbitMqConnection connection,
+            IRabbitMQConnection connection,
             IMessageSerializer serializer)
         {
             _inboundDispatcher = inboundDispatcher;

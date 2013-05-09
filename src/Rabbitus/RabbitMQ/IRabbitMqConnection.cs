@@ -2,7 +2,7 @@
 
 namespace Rabbitus.RabbitMQ
 {
-    public interface IRabbitMqConnection
+    public interface IRabbitMQConnection
     {
         IModel CreateModel();
     }

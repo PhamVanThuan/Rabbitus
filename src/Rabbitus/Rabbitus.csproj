@@ -65,7 +65,7 @@
     <Compile Include="Consumer\IMessageConsumer.cs" />
     <Compile Include="Publisher\DefaultMessagePublisher.cs" />
     <Compile Include="Publisher\IMessagePublisher.cs" />
-    <Compile Include="RabbitMQ\IRabbitMqConnection.cs" />
+    <Compile Include="RabbitMQ\IRabbitMQConnection.cs" />
     <Compile Include="RabbitMQ\RabbitMQConnection.cs" />
     <Compile Include="Rabbitus.cs" />
     <Compile Include="IRabbitus.cs" />

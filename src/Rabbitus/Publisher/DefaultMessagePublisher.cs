@@ -8,10 +8,10 @@ namespace Rabbitus.Publisher
 {
     public class DefaultMessagePublisher: IMessagePublisher
     {
-        private readonly IRabbitMqConnection _connection;
+        private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
 
-        public DefaultMessagePublisher(IRabbitMqConnection connection, IMessageSerializer serializer)
+        public DefaultMessagePublisher(IRabbitMQConnection connection, IMessageSerializer serializer)
         {
             _connection = connection;
             _serializer = serializer;

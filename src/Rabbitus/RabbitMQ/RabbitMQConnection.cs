@@ -2,7 +2,7 @@
 
 namespace Rabbitus.RabbitMQ
 {
-    public class RabbitMqConnection : IRabbitMqConnection
+    public class RabbitMqConnection : IRabbitMQConnection
     {
         private readonly IConnection _connection;
         
