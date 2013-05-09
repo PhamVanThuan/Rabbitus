@@ -5,6 +5,6 @@ namespace Rabbitus.InboundDispatcher.Dispatchers
     public interface IDispatcher<in TMessage>
         where TMessage : class
     {
-        void Dispatch(IContext<TMessage> context);
+        void Dispatch(IMessageContext<TMessage> messageContext);
     }
 }

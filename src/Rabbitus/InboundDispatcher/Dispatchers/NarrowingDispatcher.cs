@@ -12,13 +12,13 @@ namespace Rabbitus.InboundDispatcher.Dispatchers
             _dispatcher = dispatcher;
         }
 
-        public void Dispatch(IContext<object> context)
+        public void Dispatch(IMessageContext<object> messageContext)
         {
-            var message = context.Message as TMessage;
+            var message = messageContext.Message as TMessage;
             if (message == null)
                 return;
 
-            _dispatcher.Dispatch(new Context<TMessage>(message));
+            _dispatcher.Dispatch(new MessageContext<TMessage>(message));
         }
     }
 }

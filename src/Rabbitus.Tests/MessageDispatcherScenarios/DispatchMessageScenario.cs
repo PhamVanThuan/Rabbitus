@@ -1,4 +1,8 @@
 ﻿using NUnit.Framework;
+using Rabbitus.Context;
+using Rabbitus.Factories;
+using Rabbitus.InboundDispatcher;
+using Rabbitus.InboundDispatcher.Builder;
 using Rabbitus.Tests.TestActors;
 using Rabbitus.Tests.TestMessages;
 using Shouldly;
@@ -6,32 +10,33 @@ using TestStack.BDDfy;
 
 namespace Rabbitus.Tests.MessageDispatcherScenarios
 {
-    /*[TestFixture]
+    [TestFixture]
     public class DispatchMessageScenario
     {
-        private InboundMessageDispatcher _dispatcher;
+        private IInboundMessageDispatcher _dispatcher;
         private TestMessage _message;
+        private DefaultActorFactory _actorFactory;
 
         [SetUp]
         public void ScenarioSetup()
         {
-            var actorFactory = new DefaultActorFactory();
-            _dispatcher = new InboundMessageDispatcher(actorFactory);
+            _actorFactory = new DefaultActorFactory();
         }
 
-        protected void GivenAMessage()
+        public void GivenAnInboundDispatcherCreatedWithRegisteredActorTypes()
+        {
+            var builder = new InboundMessageDispatcherBuilder(_actorFactory, new[] {typeof (TestActor)});
+            _dispatcher = builder.Build();
+        }
+
+        protected void AndGivenAMessage()
         {
             _message = new TestMessage();
         }
 
-        protected void AndGivenASubscribedActor()
-        {
-           _dispatcher.RegisterActor<TestActor>();
-        }
-
         protected void WhenDispatchingTheMessage()
         {
-            _dispatcher.Dispatch(new Context<TestMessage>(_message));
+            _dispatcher.Dispatch(new MessageContext<TestMessage>(_message));
         }
 
         protected void ThenTheMessageIsDispatchedToTheActor()
@@ -44,5 +49,5 @@ namespace Rabbitus.Tests.MessageDispatcherScenarios
         {
             this.BDDfy();
         }
-    }*/
+    }
 }

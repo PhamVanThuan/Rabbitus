@@ -7,6 +7,6 @@ namespace Rabbitus.Actors.Configuration
         where TActor : Actor<TActor>
         where TMessage : class
     {
-        IConfigureHandleWhen<TMessage> HandledBy(Action<TActor, IContext<TMessage>> handler);
+        IConfigureHandleWhen<TMessage> HandledBy(Action<TActor, IMessageContext<TMessage>> handler);
     }
 }

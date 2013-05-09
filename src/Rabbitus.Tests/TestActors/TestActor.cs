@@ -12,9 +12,9 @@ namespace Rabbitus.Tests.TestActors
                 .HandledBy((actor, context) => actor.HandleTestMessage(context));
         }
 
-        public void HandleTestMessage(IContext<TestMessage> context)
+        public void HandleTestMessage(IMessageContext<TestMessage> messageContext)
         {
-            context.Message.Received = true;
+            messageContext.Message.Received = true;
         }
     }
 }
