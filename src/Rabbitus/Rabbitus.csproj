@@ -55,10 +55,10 @@
     <Compile Include="Context\MessageContext.cs" />
     <Compile Include="InboundDispatcher\InboundMessageDispatcher.cs" />
     <Compile Include="InboundDispatcher\Dispatchers\NarrowingDispatcher.cs" />
-    <Compile Include="MessageConsumer\DefaultMessageConsumer.cs" />
-    <Compile Include="MessageConsumer\IMessageConsumer.cs" />
-    <Compile Include="MessagePublisher\DefaultMessagePublisher.cs" />
-    <Compile Include="MessagePublisher\IMessagePublisher.cs" />
+    <Compile Include="Consumer\DefaultMessageConsumer.cs" />
+    <Compile Include="Consumer\IMessageConsumer.cs" />
+    <Compile Include="Publisher\DefaultMessagePublisher.cs" />
+    <Compile Include="Publisher\IMessagePublisher.cs" />
     <Compile Include="Rabbitus.cs" />
     <Compile Include="IRabbitus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
