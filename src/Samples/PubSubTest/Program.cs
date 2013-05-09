@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
 using Rabbitus;
 
 namespace PubSubTest
@@ -15,9 +14,7 @@ namespace PubSubTest
 
             Console.WriteLine("Will Start Publishing After Messages Are Published!!!");
             Console.WriteLine("Hit enter to publish {0} messages...", PublishCount);
-
             Console.ReadLine();
-
             Console.WriteLine("Publishing messages, please wait...");
 
             Enumerable.Range(1, PublishCount)
