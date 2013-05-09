@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Rabbitus.Context;
 using Rabbitus.InboundDispatcher.Dispatchers;
 
@@ -18,6 +19,11 @@ namespace Rabbitus.InboundDispatcher
             where TMessage : class
         {
             _dispatchers.Add(new NarrowingDispatcher<TMessage>(dispatcher));
+        }
+
+        public IEnumerable<IDispatcher<object>> GetRegisteredDispatchers()
+        {
+            return _dispatchers;
         }
     }
 }
