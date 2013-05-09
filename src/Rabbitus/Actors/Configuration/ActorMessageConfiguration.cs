@@ -1,6 +1,5 @@
 ﻿using System;
 using Rabbitus.Context;
-using Rabbitus.Factories;
 using Rabbitus.InboundDispatcher.Dispatchers;
 
 namespace Rabbitus.Actors.Configuration

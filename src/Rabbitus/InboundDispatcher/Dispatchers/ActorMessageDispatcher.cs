@@ -1,7 +1,7 @@
 ﻿using System;
 using Rabbitus.Actors;
+using Rabbitus.Actors.Factory;
 using Rabbitus.Context;
-using Rabbitus.Factories;
 
 namespace Rabbitus.InboundDispatcher.Dispatchers
 {

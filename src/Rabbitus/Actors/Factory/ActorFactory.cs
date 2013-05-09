@@ -1,4 +1,4 @@
-﻿namespace Rabbitus.Factories
+﻿namespace Rabbitus.Actors.Factory
 {
     public static class ActorFactory
     {
