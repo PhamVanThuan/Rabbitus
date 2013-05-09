@@ -11,16 +11,16 @@ namespace PubSubTest
             var rabbitus = RabbitusFactory.Configure(c => c.Subscribe<SampleActor>());
 
             Console.WriteLine("Will Start Publishing After Messages Are Published!!!");
-            Console.WriteLine("Enter {Message}...");
+            Console.WriteLine("Enter {Text}...");
 
             var line = Console.ReadLine();
 
-            Enumerable.Range(0, 100000)
+            Enumerable.Range(1, 1000)
                 .AsParallel()
-                .ForAll(i => rabbitus.Publish(new SampleMessage { Message = line + " : " + i.ToString(), Timestamp = DateTime.Now }));
+                .ForAll(i => rabbitus.Publish(new SampleMessage { Text = line + " " + i.ToString(), Timestamp = DateTime.Now }));
 
             rabbitus.Start();
-            Console.ReadKey(false);
+            Console.ReadKey();
         }
     }
 }

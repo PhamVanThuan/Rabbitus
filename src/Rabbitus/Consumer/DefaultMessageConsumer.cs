@@ -69,7 +69,7 @@ namespace Rabbitus.Consumer
                         var props = e.BasicProperties;
                         var body = Encoding.UTF8.GetString(e.Body);
                         var message = _serializer.DeserializeMessage(body);
-
+                        
                         GetType()
                             .GetMethod("DispatchMessage", BindingFlags.Instance | BindingFlags.NonPublic)
                             .MakeGenericMethod(message.GetType())
