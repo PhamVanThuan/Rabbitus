@@ -31,7 +31,7 @@ namespace Rabbitus.Consumer
 
         public void Start()
         {
-            Enumerable.Range(0, 5)
+            Enumerable.Range(0, 4)
                 .ForEach(i => StartConsumerThread());
         }
 
