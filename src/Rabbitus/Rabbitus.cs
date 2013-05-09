@@ -1,6 +1,8 @@
+using System;
 using Rabbitus.Consumer;
+using Rabbitus.Context;
 using Rabbitus.InboundDispatcher;
-using Rabbitus.Publisher;
+using Rabbitus.OutboundDispatcher;
 using Rabbitus.RabbitMQ;
 using Rabbitus.Serialization;
 
@@ -30,7 +32,10 @@ namespace Rabbitus
         public void Publish<TMessage>(TMessage message) 
             where TMessage : class
         {
-            OutboundDispatcher.Publish(message);
+            var messageId = Guid.NewGuid().ToString();
+            var context = new MessageContext<TMessage>(messageId, message);
+
+            OutboundDispatcher.Dispatch(context);
         }
     }
 }

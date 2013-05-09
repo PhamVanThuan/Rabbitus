@@ -1,6 +1,6 @@
 using Rabbitus.Consumer;
 using Rabbitus.InboundDispatcher;
-using Rabbitus.Publisher;
+using Rabbitus.OutboundDispatcher;
 
 namespace Rabbitus
 {

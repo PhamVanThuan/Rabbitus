@@ -64,8 +64,8 @@
     <Compile Include="InboundDispatcher\Dispatchers\NarrowingDispatcher.cs" />
     <Compile Include="Consumer\ThreadedMessageConsumer.cs" />
     <Compile Include="Consumer\IMessageConsumer.cs" />
-    <Compile Include="Publisher\OutboundMessageDispatcher.cs" />
-    <Compile Include="Publisher\IOutboundMessageDispatcher.cs" />
+    <Compile Include="OutboundDispatcher\OutboundMessageDispatcher.cs" />
+    <Compile Include="OutboundDispatcher\IOutboundMessageDispatcher.cs" />
     <Compile Include="RabbitMQ\IRabbitMQConnection.cs" />
     <Compile Include="RabbitMQ\RabbitMQConnection.cs" />
     <Compile Include="Rabbitus.cs" />

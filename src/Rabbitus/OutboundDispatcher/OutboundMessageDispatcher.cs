@@ -1,10 +1,10 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using RabbitMQ.Client;
+using Rabbitus.Context;
 using Rabbitus.RabbitMQ;
 using Rabbitus.Serialization;
 
-namespace Rabbitus.Publisher
+namespace Rabbitus.OutboundDispatcher
 {
     public class OutboundMessageDispatcher : IOutboundMessageDispatcher
     {
@@ -24,15 +24,15 @@ namespace Rabbitus.Publisher
             });
         }
 
-        public void Publish<TMessage>(TMessage message) where TMessage : class
+        public void Dispatch<TMessage>(IMessageContext<TMessage> context) where TMessage : class
         {
             _connection.UseSharedChannel(channel =>
             {
-                var data = _serializer.SerializeMessage(message);
+                var data = _serializer.SerializeMessage(context.Message);
                 var body = Encoding.UTF8.GetBytes(data);
                 var properties = channel.CreateBasicProperties();
 
-                properties.MessageId = Guid.NewGuid().ToString();
+                properties.MessageId = context.MessageId;
                 properties.ContentType = _serializer.ContentType;
 
                 properties.SetPersistent(true);

@@ -15,16 +15,16 @@ namespace Rabbitus.Consumer
 {
     public class ThreadedMessageConsumer : IMessageConsumer
     {
-        private readonly IInboundMessageDispatcher _inboundDispatcher;
+        private readonly IInboundMessageDispatcher _inboundMessageDispatcher;
         private readonly IRabbitMQConnection _connection;
         private readonly IMessageSerializer _serializer;
 
         public ThreadedMessageConsumer(
-            IInboundMessageDispatcher inboundDispatcher, 
+            IInboundMessageDispatcher inboundMessageDispatcher, 
             IRabbitMQConnection connection,
             IMessageSerializer serializer)
         {
-            _inboundDispatcher = inboundDispatcher;
+            _inboundMessageDispatcher = inboundMessageDispatcher;
             _connection = connection;
             _serializer = serializer;
         }
@@ -84,7 +84,7 @@ namespace Rabbitus.Consumer
             where TMessage : class
         {
             var context = new MessageContext<TMessage>(properties.MessageId, message);
-            _inboundDispatcher.Dispatch(context);
+            _inboundMessageDispatcher.Dispatch(context);
         }
     }
 }
