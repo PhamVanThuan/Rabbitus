@@ -42,7 +42,6 @@
     <Compile Include="Actors\Actor.cs" />
     <Compile Include="Actors\Configuration\ActorMessageConfiguration.cs" />
     <Compile Include="Actors\Factory\ActorFactory.cs" />
-    <Compile Include="IBuilder.cs" />
     <Compile Include="InboundDispatcher\Dispatchers\ActorMessageDispatcher.cs" />
     <Compile Include="Actors\Factory\DefaultActorFactory.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
