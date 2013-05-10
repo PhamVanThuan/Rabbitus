@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Rabbitus.Context
+﻿namespace Rabbitus.Context
 {
     public interface IMessageContext<out TMessage>
         where TMessage : class
