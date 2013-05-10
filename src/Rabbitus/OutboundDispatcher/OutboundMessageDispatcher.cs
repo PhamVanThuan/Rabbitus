@@ -16,17 +16,17 @@ namespace Rabbitus.OutboundDispatcher
             _connection = connection;
             _serializer = serializer;
 
-            _connection.WithChannel(channel =>
+            using (var channel = _connection.CreateChannel())
             {
                 channel.ExchangeDeclare("FOO", ExchangeType.Fanout, true);
                 channel.QueueDeclare("FOO", true, false, false, null);
                 channel.QueueBind("FOO", "FOO", "", null);
-            });
+            }
         }
 
         public void Dispatch<TMessage>(IMessageContext<TMessage> context) where TMessage : class
         {
-            _connection.WithChannel(channel =>
+            using (var channel = _connection.CreateChannel())
             {
                 var data = _serializer.SerializeMessage(context.Message);
                 var body = Encoding.UTF8.GetBytes(data);
@@ -37,7 +37,7 @@ namespace Rabbitus.OutboundDispatcher
 
                 properties.SetPersistent(true);
                 channel.BasicPublish("FOO", "", properties, body);
-            });
+            }
         }
     }
 }

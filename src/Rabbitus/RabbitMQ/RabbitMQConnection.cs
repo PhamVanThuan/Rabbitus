@@ -14,12 +14,9 @@ namespace Rabbitus.RabbitMQ
             _connection = connectionFactory.CreateConnection();
         }
 
-        public void WithChannel(Action<IModel> action)
+        public IModel CreateChannel()
         {
-            var model = _connection.CreateModel();
-
-            action(model);
-            model.Close(200, "Goodbye");
+            return _connection.CreateModel();
         }
     }
 }
